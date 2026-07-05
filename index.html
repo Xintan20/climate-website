@@ -91,3 +91,20 @@ update homepage text
       document.getElementById("weather-info").innerText = "Unable to load weather.";
     });
 </script>
+<script>
+  const apiKey = "YOUR_API_KEY"; // 8851ab70c1e2799dfa7829ff51b761dd
+  const city = "Penang"; 
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const temp = data.main.temp;
+      const desc = data.weather[0].description;
+      document.getElementById("weather-info").innerText =
+        `Temperature: ${temp}°C, Condition: ${desc}`;
+    })
+    .catch(error => {
+      document.getElementById("weather-info").innerText = "Unable to load weather.";
+    });
+</script>
